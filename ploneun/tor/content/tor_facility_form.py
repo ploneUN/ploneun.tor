@@ -31,6 +31,18 @@ from ploneun.tor import MessageFactory as _
 class ITORFacilityForm(form.Schema, IImageScaleTraversable):
     """
     """
+    title = schema.TextLine(
+        title=_(u"Title of Contract"),
+        description=_(''),
+        required=True
+        )
+
+    description = schema.Text(
+        title=_(u"Brief Description"),
+        description=_(u""),
+        required=False
+        )
+
     startdate = schema.Date(
         title=_(u"Contract Start"),
         description=_(u''),
@@ -42,6 +54,7 @@ class ITORFacilityForm(form.Schema, IImageScaleTraversable):
         description=_(u''),
         required=True,
         )
+
     value_assignment = schema.Float(
         title=_(u"Value of Assignment in USD"),
         description=_(u''),
@@ -54,5 +67,26 @@ class ITORFacilityForm(form.Schema, IImageScaleTraversable):
         description=_(u''),
         required=True,
         )
+
+    related_consultant = RelationChoice(
+        title=_(u'Link to Consultant'),
+        source=ObjPathSourceBinder(
+            object_provides='ploneun.consultant.content.consultant.IConsultant'),
+        required=False
+    )
+
+    related_tor = RelationList(
+            title=_(u'label_retalated_tor', u"Link to other TORs"),
+            default=[],
+            value_type=RelationChoice(
+                source=ObjPathSourceBinder(
+                    object_provides='ploneun.tor.content'
+                                    '.tor_facility_form.ITORFacilityForm'
+                )
+            ),
+            required=False
+            )
+
+
 
 alsoProvides(ITORFacilityForm, IFormFieldProvider)
