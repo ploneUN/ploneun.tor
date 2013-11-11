@@ -34,6 +34,7 @@ setup(name='ploneun.tor',
           'plone.app.multilingual',
           'plone.multilingualbehavior',
           'plone.app.versioningbehavior',
+          'ploneun.consultant',
           # -*- Extra requirements: -*-
       ],
       extras_require={
