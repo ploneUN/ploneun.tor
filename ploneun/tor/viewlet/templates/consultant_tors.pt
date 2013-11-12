@@ -1,0 +1,6 @@
+<div id="ploneun-tor-consultant_tors">
+    <ul tal:repeat="tor python:viewlet.related_tors()">
+        <li tal:content="tor/title"/>
+        </ul>
+
+</div>
