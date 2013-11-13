@@ -35,6 +35,7 @@ setup(name='ploneun.tor',
           'plone.multilingualbehavior',
           'plone.app.versioningbehavior',
           'ploneun.consultant',
+          'collective.wtf==1.0b8',
           # -*- Extra requirements: -*-
       ],
       extras_require={
