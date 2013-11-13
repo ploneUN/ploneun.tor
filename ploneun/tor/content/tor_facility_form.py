@@ -22,6 +22,7 @@ from plone.formwidget.contenttree import ObjPathSourceBinder
 from plone.multilingualbehavior.directives import languageindependent
 from collective import dexteritytextindexer
 from plone.app.z3cform.wysiwyg import WysiwygFieldWidget
+from plone.app.content.interfaces import INameFromTitle
 
 from ploneun.tor import MessageFactory as _
 
@@ -68,6 +69,15 @@ class ITORFacilityForm(form.Schema, IImageScaleTraversable):
         required=True,
         )
 
+    rating = schema.Bool(
+        title=_(u"Based on your experience, would you hire this "
+                u"consultant again or recommend her/him to colleagues? "
+                u"(Yes / No)"),
+        description=_(u''),
+        required=True,
+        )
+
+
     related_consultant = RelationChoice(
         title=_(u'Link to Consultant'),
         source=ObjPathSourceBinder(
@@ -88,5 +98,16 @@ class ITORFacilityForm(form.Schema, IImageScaleTraversable):
             )
 
 
-
 alsoProvides(ITORFacilityForm, IFormFieldProvider)
+
+
+class NameFromTitle(grok.Adapter):
+    grok.implements(INameFromTitle)
+    grok.context(ITORFacilityForm)
+
+    def __init__(self, context):
+        self.context = context
+
+    @property
+    def title(self):
+        return u'TOR Facility Form'

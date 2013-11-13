@@ -36,3 +36,7 @@ class Index(dexterity.DisplayForm):
     def all_related_tors(self):
         return dict(related_to=[i.to_object for i in self.context.related_tor],
                     related_from=back_references(self.context, 'related_tor'))
+
+    @property
+    def tor_consultant(self):
+        return self.context.related_consultant.to_object.title

@@ -1,6 +1,34 @@
 <div id="ploneun-tor-consultant_tors">
-    <ul tal:repeat="tor python:viewlet.related_tors()">
-        <li tal:content="tor/title"/>
-        </ul>
+    <h3> TORS </h3>
+    <table class="vertical listing" summary="Consultant related TORS">
+        <thead>
+        <tr>
+            <th>Title</th>
+            <th>Description</th>
+            <th>Start Date</th>
+            <th>End Date</th>
+            <th>Financial Value</th>
+            <th>Performance Comment</th>
+            <th>Recommendation</th>
+            <th>ToR State</th>
+        </tr>
+        </thead>
+    <tr tal:repeat='tor python:viewlet.related_tors()'>
+        <td tal:content="tor/title"/>
+        <td tal:content="tor/description"/>
+        <td tal:content="tor/startdate"/>
+        <td tal:content="tor/enddate"/>
+        <td tal:content="tor/value_assignment"/>
+        <td tal:content="structure tor/performance"/>
+        <td>
+            <span  tal:condition="tor/rating" tal:replace="string:Yes"/>
+            <span  tal:condition="not:tor/rating" tal:replace="string:No"/>
+        </td>
+        <td tal:content="python: viewlet.get_state(tor)">
+        </td>
+            
+
+        </tr>
+    </table>
 
 </div>

@@ -8,6 +8,7 @@ from ploneun.tor.interfaces import IProductSpecific
 from ploneun.consultant.content.consultant import IConsultant
 from ploneun.tor.backref import back_references
 from ploneun.tor.content.tor_facility_form import ITORFacilityForm
+from plone import api
 
 grok.templatedir('templates')
 
@@ -22,4 +23,10 @@ class consultanttors(grok.Viewlet):
         return True
 
     def related_tors(self):
-        return back_references(self.context, 'related_consultant')
+        data = back_references(self.context, 'related_consultant')
+        return sorted(data, key=lambda data: data.startdate)
+
+    def get_state(self, obj):
+        state = api.content.get_state(obj)
+        return obj.portal_workflow.getTitleForStateOnType(state,
+                                                          obj.portal_type)
