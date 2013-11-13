@@ -1,0 +1,80 @@
+[Workflow]
+Id:,tor_workflow
+Title:,TOR Workflow
+Description:,"- A TOR workflow where content is only accessible if you are logged in. - Basic states are: Internal Draft, In Progress, Completed."
+Initial state:,internal
+Type:,Workflow
+State variable:,review_state
+
+[State]
+Id:,in_progress
+Title:,In Progress
+Description:,
+Transitions,"back_to_initial, publish_internally"
+Permissions,Acquire,Anonymous,Manager,Owner,Reader,Editor,Contributor,Member,Site Administrator
+Access contents information,N,N,Y,Y,Y,Y,Y,Y,Y
+View,N,N,Y,Y,Y,Y,Y,Y,Y
+Modify portal content,N,N,Y,Y,N,Y,N,N,Y
+Change portal events,N,N,Y,Y,N,Y,N,N,Y
+
+[State]
+Id:,internal
+Title:,Internal draft
+Description:,Initial state of TOR
+Transitions,wip
+Permissions,Acquire,Anonymous,Manager,Owner,Reader,Editor,Contributor,Member,Site Administrator
+Access contents information,N,N,Y,Y,Y,Y,Y,Y,Y
+View,N,N,Y,Y,Y,Y,Y,Y,Y
+Modify portal content,N,N,Y,Y,N,Y,N,N,Y
+Change portal events,N,N,Y,Y,N,Y,N,N,Y
+
+[State]
+Id:,internally_published
+Title:,Completed
+Description:,TOR is completed
+Transitions,retract
+Permissions,Acquire,Anonymous,Manager,Owner,Reader,Editor,Contributor,Member,Site Administrator
+Access contents information,N,N,Y,Y,Y,Y,Y,Y,Y
+View,N,N,Y,Y,Y,Y,Y,Y,Y
+Modify portal content,N,N,Y,N,N,N,N,N,Y
+Change portal events,N,N,Y,N,N,N,N,N,Y
+
+[Transition]
+Id:,back_to_initial
+Title:,Back to initial
+Description:,Back to initial
+Details:,Set it to initial state
+Target state:,internal
+URL:,%(content_url)s/content_status_modify?workflow_action=back_to_initial
+Trigger:,User
+Guard permission:,Request review
+
+[Transition]
+Id:,publish_internally
+Title:,Completed
+Description:,Reviewer publishes content to internal users
+Details:,Publishing the item makes it visible to other users.
+Target state:,internally_published
+URL:,%(content_url)s/content_status_modify?workflow_action=publish_internally
+Trigger:,User
+Guard permission:,Review portal content
+
+[Transition]
+Id:,retract
+Title:,Retract
+Description:,Retracts submission
+Details:,"If you submitted the item by mistake or want to perform additional edits, this will take it back."
+Target state:,in_progress
+URL:,%(content_url)s/content_status_modify?workflow_action=retract
+Trigger:,User
+Guard permission:,Request review
+
+[Transition]
+Id:,wip
+Title:,In Progress
+Description:,In Progress
+Target state:,in_progress
+URL:,%(content_url)s/content_status_modify?workflow_action=wip
+Trigger:,User
+Guard permission:,Request review
+
