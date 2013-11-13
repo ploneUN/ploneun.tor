@@ -36,6 +36,7 @@ setup(name='ploneun.tor',
           'plone.app.versioningbehavior',
           'ploneun.consultant',
           'collective.wtf==1.0b8',
+          'plone.api',
           # -*- Extra requirements: -*-
       ],
       extras_require={
