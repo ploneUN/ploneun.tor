@@ -62,6 +62,20 @@ class ITORFacilityForm(form.Schema, IImageScaleTraversable):
         required=True,
         )
 
+    related_consultant = RelationChoice(
+        title=_(u'Link to Consultant'),
+        source=ObjPathSourceBinder(
+            object_provides='ploneun.consultant.content.consultant.IConsultant'),
+        required=False
+    )
+
+    form.widget(tor_details=WysiwygFieldWidget)
+    tor_details = schema.Text(
+        title=_(u"Details"),
+        description=_(u''),
+        required=True,
+        )
+
     form.widget(performance=WysiwygFieldWidget)
     performance = schema.Text(
         title=_(u"Performance Feedback"),
@@ -77,25 +91,17 @@ class ITORFacilityForm(form.Schema, IImageScaleTraversable):
         required=True,
         )
 
-
-    related_consultant = RelationChoice(
-        title=_(u'Link to Consultant'),
-        source=ObjPathSourceBinder(
-            object_provides='ploneun.consultant.content.consultant.IConsultant'),
-        required=False
-    )
-
     related_tor = RelationList(
-            title=_(u'label_retalated_tor', u"Link to other TORs"),
-            default=[],
-            value_type=RelationChoice(
-                source=ObjPathSourceBinder(
-                    object_provides='ploneun.tor.content'
-                                    '.tor_facility_form.ITORFacilityForm'
-                )
-            ),
-            required=False
+        title=_(u'label_retalated_tor', u"Link to other TORs"),
+        default=[],
+        value_type=RelationChoice(
+            source=ObjPathSourceBinder(
+                object_provides='ploneun.tor.content'
+                                '.tor_facility_form.ITORFacilityForm'
             )
+        ),
+        required=False
+        )
 
 
 alsoProvides(ITORFacilityForm, IFormFieldProvider)

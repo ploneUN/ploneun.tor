@@ -1,0 +1,26 @@
+/* style.css */
+.tor-details {
+    float:right;
+    padding:5px;
+    width:300px;
+    border:1px solid #eee;
+    margin-top:20px;
+}
+
+.tor-details td,
+.tor-details th {
+    padding:8px;
+}
+
+.tor-details th {
+    width:100px;
+    text-align:right;
+}
+
+.tor-details th.header {
+    background:#eee;
+    text-align:center;
+}
+
+.tor-consultant-details span {
+    display: block;
