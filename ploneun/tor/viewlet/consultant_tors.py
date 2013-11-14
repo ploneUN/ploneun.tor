@@ -30,3 +30,7 @@ class consultanttors(grok.Viewlet):
         state = api.content.get_state(obj)
         return obj.portal_workflow.getTitleForStateOnType(state,
                                                           obj.portal_type)
+
+    def format_date(self, obj):
+        return obj.strftime("%d %b %Y")
+

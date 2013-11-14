@@ -5,6 +5,7 @@ from ploneun.tor.backref import back_references
 from ploneun.consultant.vocabulary import resolve_value
 from zope.schema.interfaces import IVocabularyFactory
 from zope.component import getUtility
+from plone import api
 
 grok.templatedir('templates')
 
@@ -54,3 +55,9 @@ class Index(dexterity.DisplayForm):
 
     def format_date(self, date):
         return date.strftime("%d %b %Y")
+
+    def is_draft(self):
+        state = api.content.get_state(self.context)
+        if state in ['internal']:
+            return True
+        return False

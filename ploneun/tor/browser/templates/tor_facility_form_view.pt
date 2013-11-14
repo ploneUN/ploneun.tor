@@ -55,7 +55,7 @@
 
     <div class="tor-consultant-details" tal:condition="view/tor_consultant | nothing">
         <h3>Consultant</h3>
-        <span tal:content="view/tor_consultant/title"/>
+        <span class="consultant-name"><a tal:attributes="href view/tor_consultant/absolute_url" tal:content="view/tor_consultant/title"></a> </span>
         <span tal:content="view/tor_consultant/street_address "/>
         <span tal:content="view/tor_consultant/email "/>
         <span tal:content="view/tor_consultant/phone "/>
@@ -90,7 +90,8 @@
     <div>
     <h3>Related TORs</h3>
     <ul tal:repeat="to tor_to">
-        <li tal:content="to/title"></li>
+        <li><a tal:attributes="href to/absolute_url"
+                tal:content="to/title"></a></li>
     </ul>
     </div>
 
@@ -98,14 +99,15 @@
     <h3>Referenced by</h3>
     <span>This TOR is referenced by the following TORs</span>
     <ul tal:repeat="ref ref_by">
-        <li tal:content="ref/title"></li>
+        <li><a tal:attributes="href ref/absolute_url"
+                tal:content="ref/title"></a></li>
     </ul>
     </div>
 
     </tal:block>
 
     <div class="visualNoPrint">
-        <h3>List of file attachments</h3>
+        <h2>Attachments</h2>
 
         <dl class="portalMessage info">
             <dt>Info</dt>
@@ -113,8 +115,7 @@
 
                 <a tal:attributes="href string:${context/absolute_url}/createObject?type_name=File">
                     Click here to add file attachments </a>.
-               
-            </dd>
+                </dd>
         </dl>
 
         <p class="discreet visualNoPrint">
@@ -131,12 +132,18 @@
                 Download 
               </a>
               - <a tal:attributes="href string:${attachment/obj/absolute_url}/view">View Online</a>
+            <tal:block condition="view/is_draft">
+                - <a tal:attributes="href string:${attachment/obj/absolute_url}/edit">Edit</a>
+                - <a tal:attributes="href string:${attachment/obj/absolute_url}/delete_confirmation">Delete</a>
+            </tal:block>
         </div>
 
                 </li>
             </tal:attachments>
         </ul>
     </div>
+
+
 
 </div>
       </metal:content-core>
