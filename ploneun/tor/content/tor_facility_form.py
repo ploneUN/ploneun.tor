@@ -24,6 +24,7 @@ from collective import dexteritytextindexer
 from plone.app.z3cform.wysiwyg import WysiwygFieldWidget
 from plone.app.content.interfaces import INameFromTitle
 from ploneun.consultant.content.consultant import IConsultant
+from collective import dexteritytextindexer
 
 from ploneun.tor import MessageFactory as _
 
@@ -33,12 +34,14 @@ from ploneun.tor import MessageFactory as _
 class ITORFacilityForm(form.Schema, IImageScaleTraversable):
     """
     """
+    dexteritytextindexer.searchable('title')
     title = schema.TextLine(
         title=_(u"Title of Contract"),
         description=_(''),
         required=True
         )
 
+    dexteritytextindexer.searchable('description')
     description = schema.Text(
         title=_(u"Brief Description"),
         description=_(u""),
@@ -70,6 +73,7 @@ class ITORFacilityForm(form.Schema, IImageScaleTraversable):
         required=False
     )
 
+    dexteritytextindexer.searchable('tor_details')
     form.widget(tor_details=WysiwygFieldWidget)
     tor_details = schema.Text(
         title=_(u"Details"),
@@ -77,6 +81,7 @@ class ITORFacilityForm(form.Schema, IImageScaleTraversable):
         required=True,
         )
 
+    dexteritytextindexer.searchable('performance')
     form.widget(performance=WysiwygFieldWidget)
     performance = schema.Text(
         title=_(u"Performance Feedback"),
