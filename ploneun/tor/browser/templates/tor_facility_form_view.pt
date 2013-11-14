@@ -97,7 +97,7 @@
 
     <div>
     <h3>Referenced by</h3>
-    <span>This TOR is referenced by the following TORs</span>
+    <em>This TOR is referenced by the following TORs</em>
     <ul tal:repeat="ref ref_by">
         <li><a tal:attributes="href ref/absolute_url"
                 tal:content="ref/title"></a></li>

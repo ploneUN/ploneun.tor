@@ -16,7 +16,7 @@
     <tr tal:repeat='tor python:viewlet.related_tors()'>
         <td><a tal:attributes="href tor/absolute_url"
                 tal:content="tor/title"></a></td>
-        <td tal:content="tor/description"/>
+        <td style="width:30%; text-align:left;" tal:content="tor/description"/>
         <td tal:content="python: viewlet.format_date(tor.startdate)"/>
         <td tal:content="python: viewlet.format_date(tor.enddate)"/>
         <td tal:content="tor/value_assignment"/>

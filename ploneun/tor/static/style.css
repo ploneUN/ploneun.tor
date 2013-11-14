@@ -42,3 +42,16 @@
     font-weight:bold;
 }
 
+#ploneun-tor-consultant_tors {
+    
+    font-size: 80%;
+
+}
+
+#ploneun-tor-consultant_tors table{
+    width: 100%;
+}
+
+#ploneun-tor-consultant_tors table tr{
+    text-align: center;
+}
