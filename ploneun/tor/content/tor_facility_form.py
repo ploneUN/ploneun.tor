@@ -23,6 +23,7 @@ from plone.multilingualbehavior.directives import languageindependent
 from collective import dexteritytextindexer
 from plone.app.z3cform.wysiwyg import WysiwygFieldWidget
 from plone.app.content.interfaces import INameFromTitle
+from ploneun.consultant.content.consultant import IConsultant
 
 from ploneun.tor import MessageFactory as _
 
@@ -65,7 +66,7 @@ class ITORFacilityForm(form.Schema, IImageScaleTraversable):
     related_consultant = RelationChoice(
         title=_(u'Link to Consultant'),
         source=ObjPathSourceBinder(
-            object_provides='ploneun.consultant.content.consultant.IConsultant'),
+            object_provides=IConsultant.__identifier__),
         required=False
     )
 
