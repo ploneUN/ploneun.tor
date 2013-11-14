@@ -24,7 +24,7 @@ class consultanttors(grok.Viewlet):
 
     def related_tors(self):
         data = back_references(self.context, 'related_consultant')
-        return sorted(data, key=lambda data: data.startdate)
+        return sorted(data, key=lambda data: data.startdate, reverse=True)
 
     def get_state(self, obj):
         state = api.content.get_state(obj)

@@ -37,6 +37,7 @@ setup(name='ploneun.tor',
           'ploneun.consultant',
           'collective.wtf==1.0b8',
           'plone.api',
+          'ilo.extenders',
           # -*- Extra requirements: -*-
       ],
       extras_require={
