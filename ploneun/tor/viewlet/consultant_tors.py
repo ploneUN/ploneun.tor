@@ -15,7 +15,7 @@ grok.templatedir('templates')
 
 class consultanttors(grok.Viewlet):
     grok.context(IConsultant)
-    grok.viewletmanager(manager.IBelowContent)
+    grok.viewletmanager(manager.IBelowContentBody)
     grok.template('consultant_tors')
     grok.layer(IProductSpecific)
 
