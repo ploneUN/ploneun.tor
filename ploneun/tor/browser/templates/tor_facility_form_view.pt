@@ -87,7 +87,7 @@
     <tal:block tal:define="
     tor_to python:view.all_related_tors()['related_to']; 
     ref_by python:view.all_related_tors()['related_from']">
-    <div>
+    <div tal:condition="tor_to">
     <h3>Related TORs</h3>
     <ul tal:repeat="to tor_to">
         <li><a tal:attributes="href to/absolute_url"
@@ -95,7 +95,7 @@
     </ul>
     </div>
 
-    <div>
+    <div tal:condition="ref_by">
     <h3>Referenced by</h3>
     <em>This TOR is referenced by the following TORs</em>
     <ul tal:repeat="ref ref_by">
