@@ -86,7 +86,7 @@ class ITORFacilityForm(form.Schema, IImageScaleTraversable):
     performance = schema.Text(
         title=_(u"Performance Feedback"),
         description=_(u''),
-        required=True,
+        required=False,
         )
 
     rating = schema.Bool(
@@ -94,7 +94,8 @@ class ITORFacilityForm(form.Schema, IImageScaleTraversable):
                 u"consultant again or recommend her/him to colleagues? "
                 u"(Yes / No)"),
         description=_(u''),
-        required=True,
+        required=False,
+        default=None,
         )
 
     related_tor = RelationList(
