@@ -38,6 +38,7 @@ setup(name='ploneun.tor',
           'collective.wtf==1.0b8',
           'plone.api',
           'ilo.extenders',
+          'ilo.vocabularies',
           # -*- Extra requirements: -*-
       ],
       extras_require={

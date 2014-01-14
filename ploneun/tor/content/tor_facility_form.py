@@ -74,16 +74,14 @@ class ITORFacilityForm(form.Schema, IImageScaleTraversable):
     )
 
     dexteritytextindexer.searchable('tor_details')
-    form.widget(tor_details=WysiwygFieldWidget)
-    tor_details = schema.Text(
+    tor_details = RichText(
         title=_(u"Details"),
         description=_(u''),
         required=True,
         )
 
     dexteritytextindexer.searchable('performance')
-    form.widget(performance=WysiwygFieldWidget)
-    performance = schema.Text(
+    performance = RichText(
         title=_(u"Performance Feedback"),
         description=_(u''),
         required=False,
@@ -109,6 +107,22 @@ class ITORFacilityForm(form.Schema, IImageScaleTraversable):
         ),
         required=False
         )
+
+    cpo_rpo_output = schema.TextLine(
+        title=_(u"CPO/RPO output"),
+        description=_(u''),
+        required=False,
+        )
+
+    dexteritytextindexer.searchable('office')
+    office = schema.Choice(                                                     
+        title=u'ILO Office',                                             
+        description=u'',
+        required=True,                                                          
+        default=None,
+        source='ilo.vocabulary.offices'                                         
+    )  
+
 
 
 alsoProvides(ITORFacilityForm, IFormFieldProvider)

@@ -50,6 +50,29 @@
             </td>
         </tr>
 
+        <tr class="cpo-rpo-output">
+        <th>CPO/RPO output</th>
+            <td tal:content="context/cpo_rpo_output">
+            </td>
+        </tr>
+
+        <tr>
+        <th>ILO Office</th>
+            <td tal:content="context/office">
+            </td>
+        </tr>
+
+        <tr>
+        <th class="tor-ilo-themes-title">ILO Themes</th>
+            <td>
+                <tal:block repeat="theme context/ilo_themes">
+                <span tal:content="theme"/><span
+                        tal:condition="not:repeat/theme/end">,</span>
+
+                </tal:block>
+            </td>
+        </tr>
+
     </table>  
 
 
@@ -68,13 +91,13 @@
 
     <div>
         <h3>Details</h3>
-        <span tal:content="structure context/tor_details"/>
+        <span tal:content="structure context/tor_details/output"/>
     </div>
 
 
     <div>
         <h3>Performance Feedback</h3>
-        <span tal:content="structure context/performance"/>
+        <span tal:content="structure context/performance/output"/>
     </div>
 
     <div class="ploneun-tor-rating" >

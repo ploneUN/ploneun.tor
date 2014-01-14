@@ -55,3 +55,11 @@
 #ploneun-tor-consultant_tors table tr{
     text-align: center;
 }
+.tor-ilo-themes-title {
+    vertical-align: top;
+
+}
+.cpo-rpo-output {
+
+    border-top: solid 1px rgb(238, 238, 238);
+}
