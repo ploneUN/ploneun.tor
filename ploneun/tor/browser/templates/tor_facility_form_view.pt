@@ -97,7 +97,7 @@
 
     <div>
         <h3>Performance Feedback</h3>
-        <span tal:content="structure context/performance/output"/>
+        <span tal:content="structure context/performance/output | nothing"/>
     </div>
 
     <div class="ploneun-tor-rating" >

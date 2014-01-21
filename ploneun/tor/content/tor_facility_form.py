@@ -25,6 +25,7 @@ from plone.app.z3cform.wysiwyg import WysiwygFieldWidget
 from plone.app.content.interfaces import INameFromTitle
 from ploneun.consultant.content.consultant import IConsultant
 from collective import dexteritytextindexer
+from z3c.form.browser.radio import RadioFieldWidget
 
 from ploneun.tor import MessageFactory as _
 
@@ -87,10 +88,11 @@ class ITORFacilityForm(form.Schema, IImageScaleTraversable):
         required=False,
         )
 
+    form.widget(rating=RadioFieldWidget)
     rating = schema.Bool(
         title=_(u"Based on your experience, would you hire this "
                 u"consultant again or recommend her/him to colleagues? "
-                u"(Yes / No)"),
+                u"(Yes/No)"),
         description=_(u''),
         required=False,
         default=None,
